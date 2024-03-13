@@ -13,7 +13,7 @@ def all_favorites(request):
     if request.method == "POST":
         return Response("POST")
     
-@api_view(["Delete"])
+@api_view(["DELETE"])
 def favorite_details(request, pk):
     if request.method == "DELETE":
         return Response("DELETE")
