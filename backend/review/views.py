@@ -19,7 +19,10 @@ def all_book_reviews(request, book_id):
 @permission_classes([IsAuthenticated])
 def user_reviews(request, book_id):
     if request.method == "POST":
-        return Response("POST")
+        serializer = ReviewSerializer(data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=request.user, book_id=book_id)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(["PUT", "DELETE"])
 def review_details(request, pk):
