@@ -6,13 +6,18 @@ from .serializer import ReviewSerializer
 
 # Create your views here.
 
-@api_view(["GET", "POST"])
-def all_reviews(request):
+@api_view(["GET"])
+def all_book_reviews(request, book_id):
     if request.method == "GET":
-        return Response("GET")
+        reviews = Review.objects.filter(book_id=book_id)
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(["POST"])
+def user_reviews(request, book_id):
     if request.method == "POST":
         return Response("POST")
-    
+
 @api_view(["PUT", "DELETE"])
 def review_details(request, pk):
     if request.method == "PUT":
