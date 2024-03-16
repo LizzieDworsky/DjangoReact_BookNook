@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -25,8 +26,14 @@ def user_reviews(request, book_id):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(["PUT", "DELETE"])
+@permission_classes([IsAuthenticated])
 def review_details(request, pk):
     if request.method == "PUT":
         return Response("PUT")
     if request.method == "DELETE":
-        return Response("DELETE")
+        review = get_object_or_404(Review, pk=pk)
+        if (review.user.id == request.user.id):
+            review.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
