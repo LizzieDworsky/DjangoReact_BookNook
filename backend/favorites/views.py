@@ -20,6 +20,7 @@ def all_user_favorites(request):
 @permission_classes([IsAuthenticated])
 def create_user_favorite(request, book_id):
     if request.method == "POST":
+        # add a check for if favorite pair already exist
         serializer = FavoriteSerializer(data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user, book_id=book_id)
@@ -28,5 +29,10 @@ def create_user_favorite(request, book_id):
 @api_view(["DELETE"])
 @permission_classes([IsAuthenticated])
 def favorite_details(request, pk):
-    if request.method == "DELETE":
-        return Response("DELETE")
+    favorite = get_object_or_404(Favorite, pk=pk)
+    if (favorite.user.id == request.user.id):
+        if request.method == "DELETE":
+            favorite.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
