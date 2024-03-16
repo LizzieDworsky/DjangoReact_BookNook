@@ -28,12 +28,15 @@ def user_reviews(request, book_id):
 @api_view(["PUT", "DELETE"])
 @permission_classes([IsAuthenticated])
 def review_details(request, pk):
-    if request.method == "PUT":
-        return Response("PUT")
-    if request.method == "DELETE":
-        review = get_object_or_404(Review, pk=pk)
-        if (review.user.id == request.user.id):
+    review = get_object_or_404(Review, pk=pk)
+    if (review.user.id == request.user.id):
+        if request.method == "PUT":
+            serializer = ReviewSerializer(review, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        if request.method == "DELETE":
             review.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)

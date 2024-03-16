@@ -4,4 +4,5 @@ from .models import Review
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['id', 'book_id', 'text', 'rating']
+        fields = ['id', 'user', 'book_id', 'text', 'rating']
+        read_only_fields = ['user', 'book_id']
