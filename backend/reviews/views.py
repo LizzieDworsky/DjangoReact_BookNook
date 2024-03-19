@@ -6,7 +6,10 @@ from rest_framework import status
 from .models import Review
 from .serializer import ReviewSerializer
 
-# Create your views here.
+def get_reviews_for_book(book_id):
+    reviews = Review.objects.filter(book_id=book_id)
+    serializer = ReviewSerializer(reviews, many=True)
+    return serializer.data
 
 @api_view(["GET"])
 @permission_classes([AllowAny])
