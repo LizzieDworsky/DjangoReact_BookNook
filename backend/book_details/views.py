@@ -10,6 +10,16 @@ from favorites.models import Favorite
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def get_book_details(request, book_id):
+    """
+    Fetch and return book details including reviews and favorite status for a given book_id. This view is accessible to any user.
+
+    Parameters:
+    - request (HttpRequest): The request object.
+    - book_id (str): The unique identifier for the book from the Google Books API.
+
+    Returns:
+    - Response: HTTP 200 OK with book details including reviews, average rating, and favorite status in JSON format.
+    """
     reviews_data = get_reviews_for_book(book_id)
 
     average_rating = None
