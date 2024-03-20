@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "62142b29-1a98-45e1-af40-a84a4acab665",
+		"name": "Django_BookNook_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21116298"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register_User",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Bob\",\r\n    \"last_name\": \"Bobson\",\r\n    \"username\": \"bob\",\r\n    \"password\": \"Qw12345^\",\r\n    \"password2\": \"Qw12345^\",\r\n    \"email\": \"bob@bob.son\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/register/"
+					},
+					"response": []
+				},
+				{
+					"name": "Login_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bob\",\r\n    \"password\": \"Qw12345^\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/login/"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxMTgxNTc0MiwiaWF0IjoxNzEwNjA2MTQyLCJqdGkiOiIxNzZiNWE3ZjJjNjk0YjE5Yjc2YWVhNmE0MjExMGU3NCIsInVzZXJfaWQiOjN9.wNPhCrWjk74hPLnqqeXiZ6uADo9aNXz-hdsbUUgOJQY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/users/refresh/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Get All Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/reviews/l3tSzQEACAAJ/"
+					},
+					"response": []
+				},
+				{
+					"name": "Post New Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDQwNjY1LCJpYXQiOjE3MTA5NTQyNTEsImp0aSI6IjUzMzQwOTBhNDJkNjRmNjZiNmE3ZjAxOGM3MDE0NTA3IiwidXNlcl9pZCI6NH0.lylgkBfIwvRpoZZo_f2ZJcjrYtJ-E4SgwGLQFOHvfiQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"I love this book!\",\r\n    \"rating\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/reviews/user/l3tSzQEACAAJ/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDQwNjY1LCJpYXQiOjE3MTA5NTQyNTEsImp0aSI6IjUzMzQwOTBhNDJkNjRmNjZiNmE3ZjAxOGM3MDE0NTA3IiwidXNlcl9pZCI6NH0.lylgkBfIwvRpoZZo_f2ZJcjrYtJ-E4SgwGLQFOHvfiQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"It is alright..\",\r\n    \"rating\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/reviews/4/"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDQwNjY1LCJpYXQiOjE3MTA5NTQyNTEsImp0aSI6IjUzMzQwOTBhNDJkNjRmNjZiNmE3ZjAxOGM3MDE0NTA3IiwidXNlcl9pZCI6NH0.lylgkBfIwvRpoZZo_f2ZJcjrYtJ-E4SgwGLQFOHvfiQ",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/reviews/4/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorites",
+			"item": [
+				{
+					"name": "Get User Favorites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDQwNjY1LCJpYXQiOjE3MTA5NTQyNTEsImp0aSI6IjUzMzQwOTBhNDJkNjRmNjZiNmE3ZjAxOGM3MDE0NTA3IiwidXNlcl9pZCI6NH0.lylgkBfIwvRpoZZo_f2ZJcjrYtJ-E4SgwGLQFOHvfiQ",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/favorites/"
+					},
+					"response": []
+				},
+				{
+					"name": "Post New Favorite",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDQwNjY1LCJpYXQiOjE3MTA5NTQyNTEsImp0aSI6IjUzMzQwOTBhNDJkNjRmNjZiNmE3ZjAxOGM3MDE0NTA3IiwidXNlcl9pZCI6NH0.lylgkBfIwvRpoZZo_f2ZJcjrYtJ-E4SgwGLQFOHvfiQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"The Hobbit\",\r\n    \"thumbnail_url\": \"http://books.google.com/books/content?id=l3tSzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/favorites/l3tSzQEACAAJ/"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Favorite",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDQwNjY1LCJpYXQiOjE3MTA5NTQyNTEsImp0aSI6IjUzMzQwOTBhNDJkNjRmNjZiNmE3ZjAxOGM3MDE0NTA3IiwidXNlcl9pZCI6NH0.lylgkBfIwvRpoZZo_f2ZJcjrYtJ-E4SgwGLQFOHvfiQ",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/favorites/4/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookDetails",
+			"item": [
+				{
+					"name": "Get Book Details User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDQwNjY1LCJpYXQiOjE3MTA5NTQyNTEsImp0aSI6IjUzMzQwOTBhNDJkNjRmNjZiNmE3ZjAxOGM3MDE0NTA3IiwidXNlcl9pZCI6NH0.lylgkBfIwvRpoZZo_f2ZJcjrYtJ-E4SgwGLQFOHvfiQ",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/book_details/l3tSzQEACAAJ/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book Details No User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://localhost:8000/api/book_details/l3tSzQEACAAJ/"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
