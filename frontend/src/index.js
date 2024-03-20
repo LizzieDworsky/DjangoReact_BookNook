@@ -6,7 +6,7 @@ import App from "./App";
 
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
+import HomePage, { getBooksSearch } from "./pages/HomePage";
 
 import { AuthProvider } from "./utils/useAuth";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <HomePage />,
+                loader: getBooksSearch,
             },
             {
                 path: "/register",
