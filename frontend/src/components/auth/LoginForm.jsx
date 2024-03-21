@@ -30,10 +30,10 @@ const LoginForm = () => {
         event.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/auth/login",
+                "http://localhost:8000/api/users/login/",
                 credentials
             );
-            const token = response.headers["x-auth-token"];
+            const token = response.data.access;
             if (token) {
                 storeToken(token);
             }
