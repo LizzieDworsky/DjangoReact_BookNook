@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
     const navigate = useNavigate();
-    const { storeToken, isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth();
     const [credentials, setCredentials] = useState({
+        first_name: "",
+        last_name: "",
         username: "",
         email: "",
         password: "",
+        password2: "",
     });
 
     // Effect hook to redirect user to HomePage if already authenticated
@@ -31,12 +34,11 @@ const RegisterForm = () => {
         event.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/auth/register",
+                "http://localhost:8000/api/users/register/",
                 credentials
             );
-            const token = response.headers["x-auth-token"];
-            if (token) {
-                storeToken(token);
+            if (response.status === 201) {
+                navigate("/login");
             }
         } catch (error) {
             console.error("Registration failed:", error);
@@ -48,6 +50,20 @@ const RegisterForm = () => {
             <h1 className="auth-header">Register</h1>
             {/* Registration form render */}
             <form className="auth-form" onSubmit={(e) => handleSubmit(e)}>
+                <input
+                    name="first_name"
+                    type="text"
+                    placeholder="First Name"
+                    value={credentials.first_name}
+                    onChange={(e) => handleChange(e)}
+                />
+                <input
+                    name="last_name"
+                    type="text"
+                    placeholder="Last Name"
+                    value={credentials.last_name}
+                    onChange={(e) => handleChange(e)}
+                />
                 <input
                     name="username"
                     type="text"
@@ -67,6 +83,13 @@ const RegisterForm = () => {
                     type="password"
                     placeholder="Password"
                     value={credentials.password}
+                    onChange={(e) => handleChange(e)}
+                />
+                <input
+                    name="password2"
+                    type="password"
+                    placeholder="Confirm Password"
+                    value={credentials.password2}
                     onChange={(e) => handleChange(e)}
                 />
                 <button type="submit">Register</button>
