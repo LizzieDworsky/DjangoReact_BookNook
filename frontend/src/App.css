@@ -92,6 +92,19 @@ body {
     background-color: #34495e;
 }
 
+.form-error-message {
+    display: block;
+    background-color: rgba(231, 76, 60, 0.75);
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
 /* HomePage CSS */
 .home-div-no-books {
     text-align: center;

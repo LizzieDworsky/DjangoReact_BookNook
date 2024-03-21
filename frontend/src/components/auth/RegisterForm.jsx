@@ -15,6 +15,7 @@ const RegisterForm = () => {
         password: "",
         password2: "",
     });
+    const [errors, setErrors] = useState({});
 
     // Effect hook to redirect user to HomePage if already authenticated
     useEffect(() => {
@@ -29,9 +30,28 @@ const RegisterForm = () => {
         setCredentials({ ...credentials, [name]: value });
     };
 
+    // Handle client-side form validation
+    const validateForm = () => {
+        let formIsValid = true;
+        let errors = {};
+
+        // Password confirmation validation
+        if (credentials.password !== credentials.password2) {
+            errors.password2 = "Passwords do not match";
+            formIsValid = false;
+        }
+
+        // Add additional errors, for example password expectations (Password must be at least 8 characters, etc)
+
+        setErrors(errors);
+        return formIsValid;
+    };
+
     // Handle form submission and register axios post request
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!validateForm()) return;
+
         try {
             const response = await axios.post(
                 "http://localhost:8000/api/users/register/",
@@ -85,6 +105,9 @@ const RegisterForm = () => {
                     value={credentials.password}
                     onChange={(e) => handleChange(e)}
                 />
+                {errors.password && (
+                    <div className="form-error-message">{errors.password}</div>
+                )}
                 <input
                     name="password2"
                     type="password"
@@ -92,6 +115,9 @@ const RegisterForm = () => {
                     value={credentials.password2}
                     onChange={(e) => handleChange(e)}
                 />
+                {errors.password2 && (
+                    <div className="form-error-message">{errors.password2}</div>
+                )}
                 <button type="submit">Register</button>
             </form>
         </div>
