@@ -1,0 +1,52 @@
+/* Styles for BookList */
+.book-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.book-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Styles for each BookListItem */
+.book-list-item {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.book-list-item img {
+    max-width: 125px;
+    margin-bottom: 15px;
+}
+
+.book-list-item h4 {
+    margin: 10px 0;
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+}
+
+.book-list-item p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+
+.book-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

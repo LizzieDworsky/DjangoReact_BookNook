@@ -6,12 +6,8 @@ const BookListItem = ({ book }) => {
 
     return (
         book && (
-            <li>
-                <img
-                    src={thumbnailUrl}
-                    alt="Thumbnail of the book."
-                    style={{ maxWidth: "100px" }}
-                />
+            <li className="book-list-item">
+                <img src={thumbnailUrl} alt="Thumbnail of the book." />
                 <h4>{book.volumeInfo.title}</h4>
                 <p>Author(s):</p>
                 {book.volumeInfo.authors.map((author) => (
