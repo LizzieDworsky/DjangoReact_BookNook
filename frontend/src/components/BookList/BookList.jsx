@@ -1,3 +1,5 @@
+import BookListItem from "./BookListItem";
+
 const BookList = ({ books }) => {
     console.log(books);
     return (
@@ -5,7 +7,7 @@ const BookList = ({ books }) => {
             <div>
                 <ul>
                     {books.map((book) => (
-                        <p>{book.volumeInfo.title}</p>
+                        <BookListItem book={book} />
                     ))}
                 </ul>
             </div>
