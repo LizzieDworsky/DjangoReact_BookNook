@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
+import BookList from "../components/BookList/BookList";
 
 export async function getBooksSearch() {
     try {
@@ -26,5 +27,9 @@ export default function HomePage() {
         );
     }
 
-    return <div>HomePage</div>;
+    return (
+        <div>
+            <BookList books={books} />
+        </div>
+    );
 }
