@@ -4,7 +4,10 @@ import axios from "axios";
 
 export async function getBooksSearch() {
     try {
-        return [];
+        const response = await axios.get(
+            "https://www.googleapis.com/books/v1/volumes?q=hobbit"
+        );
+        return response.data.items;
     } catch (error) {
         console.error(error);
         return [];
