@@ -3,10 +3,14 @@ import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import BookList from "../components/BookList/BookList";
 
-export async function getBooksSearch() {
+export async function getBooksLoader() {
+    return getBooksSearch("hobbit");
+}
+
+async function getBooksSearch(query) {
     try {
         const response = await axios.get(
-            "https://www.googleapis.com/books/v1/volumes?q=hobbit"
+            `https://www.googleapis.com/books/v1/volumes?q=${query}`
         );
         return response.data.items;
     } catch (error) {
