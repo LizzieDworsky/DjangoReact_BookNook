@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import BookList from "../components/BookList/BookList";
+import SearchBar from "../components/SearchBar";
 
 export async function getBooksLoader() {
     return getBooksSearch("hobbit");
@@ -33,6 +34,7 @@ export default function HomePage() {
 
     return (
         <div>
+            <SearchBar />
             <BookList books={books} />
         </div>
     );
