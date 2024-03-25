@@ -13,7 +13,7 @@ async function getBooksSearch(query) {
         const response = await axios.get(
             `https://www.googleapis.com/books/v1/volumes?q=${query}`
         );
-        return response.data.items;
+        return response.data.items || [];
     } catch (error) {
         console.error(error);
         return [];
@@ -23,6 +23,11 @@ async function getBooksSearch(query) {
 export default function HomePage() {
     const data = useLoaderData() || [];
     const [books, setBooks] = useState(data);
+
+    const fetchBooks = async (query) => {
+        let tempBooks = await getBooksSearch(query);
+        setBooks(tempBooks);
+    };
 
     if (books.length === 0) {
         return (
@@ -34,7 +39,7 @@ export default function HomePage() {
 
     return (
         <div>
-            <SearchBar />
+            <SearchBar fetchBooks={fetchBooks} />
             <BookList books={books} />
         </div>
     );

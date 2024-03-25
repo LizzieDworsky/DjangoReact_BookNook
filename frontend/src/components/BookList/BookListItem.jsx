@@ -3,6 +3,8 @@ const BookListItem = ({ book }) => {
     const thumbnailUrl =
         book.volumeInfo.imageLinks?.smallThumbnail || placeHolderImg;
 
+    console.log(book.volumeInfo.authors);
+
     return (
         book && (
             <li className="book-list-item">
@@ -12,9 +14,13 @@ const BookListItem = ({ book }) => {
                 />
                 <h4>{book.volumeInfo.title}</h4>
                 <p>Author(s):</p>
-                {book.volumeInfo.authors.map((author) => (
-                    <p key={author}>{author}</p>
-                ))}
+                {book.volumeInfo.authors ? (
+                    book.volumeInfo.authors.map((author) => (
+                        <p key={author}>{author}</p>
+                    ))
+                ) : (
+                    <p>Unknown</p>
+                )}
             </li>
         )
     );
