@@ -3,8 +3,6 @@ const BookListItem = ({ book }) => {
     const thumbnailUrl =
         book.volumeInfo.imageLinks?.smallThumbnail || placeHolderImg;
 
-    console.log(book.volumeInfo.authors);
-
     return (
         book && (
             <li className="book-list-item">

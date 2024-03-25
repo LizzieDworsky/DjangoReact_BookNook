@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import BookList from "../components/BookList/BookList";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 export async function getBooksLoader() {
     return getBooksSearch("hobbit");
