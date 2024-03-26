@@ -34,12 +34,12 @@ const router = createBrowserRouter([
                 element: <LoginPage />,
             },
             {
-                path: "/favorites/",
+                path: "/favorites",
                 element: <FavoritesPage />,
                 loader: getFavoritesLoader,
             },
             {
-                path: "/:bookId/",
+                path: "/:bookId",
                 element: <BookDetailsPage />,
                 loader: getBookDetailsLoader,
             },

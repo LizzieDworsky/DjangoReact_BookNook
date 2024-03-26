@@ -13,6 +13,12 @@
     gap: 20px;
 }
 
+.book-list a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 /* Styles for each BookListItem */
 .book-list-item {
     background: #ffffff;
@@ -49,4 +55,12 @@
 .book-list-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Placehold solution, use JS to calculate the largest card and set the height to match */
+    min-height: 340px;
 }
