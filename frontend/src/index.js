@@ -7,6 +7,8 @@ import App from "./App";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage, { getBooksLoader } from "./pages/HomePage";
+import BookDetailsPage, { getBookDetailsLoader } from "./pages/BookDetailsPage";
+import FavoritesPage, { getFavoritesLoader } from "./pages/FavoritesPage";
 
 import { AuthProvider } from "./utils/useAuth";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -30,6 +32,16 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <LoginPage />,
+            },
+            {
+                path: "/favorites/",
+                element: <FavoritesPage />,
+                loader: getFavoritesLoader,
+            },
+            {
+                path: "/:bookId/",
+                element: <BookDetailsPage />,
+                loader: getBookDetailsLoader,
             },
         ],
     },
