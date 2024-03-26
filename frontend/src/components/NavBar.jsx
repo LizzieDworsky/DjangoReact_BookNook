@@ -11,22 +11,25 @@ const NavBar = () => {
             </Link>
 
             {/* Navigation links: Logout for authenticated users, Login/Register for guests  */}
-            <div className="navbar-links">
-                {isAuthenticated ? (
+            {isAuthenticated ? (
+                <div className="navbar-links">
+                    <Link to="/favorites" className="navbar-link">
+                        Favorites
+                    </Link>
                     <div className="navbar-link" onClick={() => logout()}>
                         Logout
                     </div>
-                ) : (
-                    <>
-                        <Link to="/login" className="navbar-link">
-                            Login
-                        </Link>
-                        <Link to="/register" className="navbar-link">
-                            Register
-                        </Link>
-                    </>
-                )}
-            </div>
+                </div>
+            ) : (
+                <div className="navbar-links">
+                    <Link to="/login" className="navbar-link">
+                        Login
+                    </Link>
+                    <Link to="/register" className="navbar-link">
+                        Register
+                    </Link>
+                </div>
+            )}
         </nav>
     );
 };
