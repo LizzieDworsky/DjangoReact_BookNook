@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import BookListItem from "./BookListItem";
 import "./BookList.css";
 
-const BookList = ({ books }) => {
+const BookList = ({ books, isFavorite = false }) => {
     return (
         books && (
             <div className="book-list-container">
                 <ul className="book-list">
                     {books.map((book) => (
                         <Link to={`/${book.id}`} key={book.id}>
-                            <BookListItem book={book} />
+                            <BookListItem book={book} isFavorite={isFavorite} />
                         </Link>
                     ))}
                 </ul>

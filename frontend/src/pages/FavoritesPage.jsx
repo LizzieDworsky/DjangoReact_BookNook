@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import BookList from "../components/BookList/BookList";
 
 export async function getFavoritesLoader() {
     return getFavoritesSearch();
@@ -37,5 +38,5 @@ export default function FavoritesPage() {
         );
     }
 
-    return <div>FavoritesPage</div>;
+    return <BookList books={favorites} isFavorite={true} />;
 }
