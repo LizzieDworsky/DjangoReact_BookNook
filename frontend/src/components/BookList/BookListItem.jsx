@@ -1,4 +1,6 @@
 const BookListItem = ({ book, isFavorite }) => {
+    if (!book) return null;
+
     const placeHolderImg = "/images/StylizedBookImage.webp";
     const thumbnailUrl = isFavorite
         ? book.thumbnail_url
@@ -12,20 +14,18 @@ const BookListItem = ({ book, isFavorite }) => {
     };
 
     return (
-        book && (
-            <li className="book-list-item">
-                <div className="book-item-content">
-                    <img src={thumbnailUrl} alt={`Cover for ${title} book.`} />
-                    <h4>{title}</h4>
-                    {!isFavorite && (
-                        <>
-                            <p>Author(s):</p>
-                            {renderAuthors()}
-                        </>
-                    )}
-                </div>
-            </li>
-        )
+        <li className="book-list-item">
+            <div className="book-item-content">
+                <img src={thumbnailUrl} alt={`Cover for ${title} book.`} />
+                <h4>{title}</h4>
+                {!isFavorite && (
+                    <>
+                        <p>Author(s):</p>
+                        {renderAuthors()}
+                    </>
+                )}
+            </div>
+        </li>
     );
 };
 
