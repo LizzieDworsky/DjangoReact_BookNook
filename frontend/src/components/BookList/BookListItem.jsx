@@ -1,7 +1,8 @@
-const BookListItem = ({ book }) => {
+const BookListItem = ({ book, isFavorite = false }) => {
     const placeHolderImg = "/images/StylizedBookImage.webp";
-    const thumbnailUrl =
-        book.volumeInfo.imageLinks?.smallThumbnail || placeHolderImg;
+    const thumbnailUrl = isFavorite
+        ? placeHolderImg
+        : book.volumeInfo.imageLinks?.smallThumbnail || placeHolderImg;
 
     return (
         book && (
@@ -12,13 +13,17 @@ const BookListItem = ({ book }) => {
                         alt={`Cover for ${book.volumeInfo.title} book.`}
                     />
                     <h4>{book.volumeInfo.title}</h4>
-                    <p>Author(s):</p>
-                    {book.volumeInfo.authors ? (
-                        book.volumeInfo.authors.map((author) => (
-                            <p key={author}>{author}</p>
-                        ))
-                    ) : (
-                        <p>Unknown</p>
+                    {!isFavorite && (
+                        <>
+                            <p>Author(s):</p>
+                            {book.volumeInfo.authors ? (
+                                book.volumeInfo.authors.map((author) => (
+                                    <p key={author}>{author}</p>
+                                ))
+                            ) : (
+                                <p>Unknown</p>
+                            )}
+                        </>
                     )}
                 </div>
             </li>
