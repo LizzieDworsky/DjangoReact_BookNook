@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
                 localStorage.removeItem("token");
             }
         }
-        console.log(isAuthenticated);
     }, []);
 
     // Function to store token in local storage and update user state

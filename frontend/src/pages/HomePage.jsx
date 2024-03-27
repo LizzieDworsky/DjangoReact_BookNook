@@ -11,7 +11,7 @@ export async function getBooksLoader() {
 async function getBooksSearch(query) {
     try {
         const response = await axios.get(
-            `https://www.googleapis.com/books/v1/volumes?q=${query}`
+            `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=15`
         );
         return response.data.items || [];
     } catch (error) {
@@ -31,7 +31,7 @@ export default function HomePage() {
 
     if (books.length === 0) {
         return (
-            <div className="home-div-no-books">
+            <div className="home-fav-div-no-books">
                 There are no books matching this description.
             </div>
         );
