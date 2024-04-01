@@ -8,7 +8,10 @@ const BookList = ({ books, isFavorite = false }) => {
             <div className="book-list-container">
                 <ul className="book-list">
                     {books.map((book) => (
-                        <Link to={`/${book.id}`} key={book.id}>
+                        <Link
+                            to={`/${isFavorite ? book.book_id : book.id}`}
+                            key={book.id}
+                        >
                             <BookListItem book={book} isFavorite={isFavorite} />
                         </Link>
                     ))}
