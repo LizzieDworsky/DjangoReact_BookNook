@@ -8,18 +8,15 @@ export async function getBookDetailsLoader({ params }) {
 
 async function getBooksDetailsSearch(bookId) {
     try {
-        let token = localStorage.getItem("token");
-        if (!token) {
-            return [];
-        }
         const response1 = await axios.get(
             `https://www.googleapis.com/books/v1/volumes/${bookId}`
         );
+
+        let token = localStorage.getItem("token");
+        const headers = token ? { Authorization: "Bearer " + token } : {};
         const response2 = await axios.get(
             `http://localhost:8000/api/book_details/${bookId}/`,
-            {
-                headers: { Authorization: "Bearer " + token },
-            }
+            { headers }
         );
         return { bookInfo: response1.data.volumeInfo, appData: response2.data };
     } catch (error) {
