@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import BookInfo from "../components/BookDetails/BookInfo";
 
 export async function getBookDetailsLoader({ params }) {
     return getBooksDetailsSearch(params.bookId);
@@ -12,7 +13,7 @@ async function getBooksDetailsSearch(bookId) {
             `https://www.googleapis.com/books/v1/volumes/${bookId}`
         );
 
-        let token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
         const headers = token ? { Authorization: "Bearer " + token } : {};
         const response2 = await axios.get(
             `http://localhost:8000/api/book_details/${bookId}/`,
@@ -28,6 +29,6 @@ async function getBooksDetailsSearch(bookId) {
 export default function BookDetailsPage() {
     const data = useLoaderData() || [];
     const [bookDetails, setBookDetails] = useState(data);
-    console.log(bookDetails);
-    return <div>BookDetailsPage</div>;
+    // console.log(bookDetails);
+    return <BookInfo bookInfo={bookDetails.bookInfo} />;
 }
