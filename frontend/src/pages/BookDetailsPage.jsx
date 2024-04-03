@@ -30,11 +30,18 @@ async function getBooksDetailsSearch(bookId) {
 export default function BookDetailsPage() {
     const data = useLoaderData() || [];
     const [bookDetails, setBookDetails] = useState(data);
+    const favBookInfo = {
+        bookId: bookDetails.appData.book_id,
+        isFav: bookDetails.appData.is_favorite,
+        title: bookDetails.bookInfo.title,
+        thumbnailUrl: bookDetails.bookInfo.imageLinks?.thumbnail,
+    };
+    console.log(favBookInfo);
     console.log(bookDetails);
     return (
         <div>
             <BookInfo bookInfo={bookDetails.bookInfo} />
-            <FavoriteButton isFav={bookDetails.appData.is_favorite} />
+            <FavoriteButton favBookInfo={favBookInfo} />
         </div>
     );
 }
