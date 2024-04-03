@@ -6,62 +6,58 @@ import { FaHeart } from "react-icons/fa";
 const FavoriteButton = ({ favBookInfo }) => {
     const [favState, setFavState] = useState(favBookInfo.isFav);
     const [favoriteObj, setFavoriteObj] = useState(null);
-    const { isAuthenticated } = useAuth();
-    const token = localStorage.getItem("token");
+    const { isAuthenticated, token } = useAuth();
 
-    const toggleFav = () => {
-        if (isAuthenticated) {
-            favState ? deleteFav(token) : addFav(token);
-        }
-    };
     useEffect(() => {
         if (isAuthenticated) {
-            getFav(token);
+            fetchFavorite();
         }
     }, []);
-    const getFav = async (token) => {
+    const apiRequest = async (method, endpoint, data = {}) => {
+        const url = `http://localhost:8000/api/${endpoint}`;
+        const headers = { Authorization: `Bearer ${token}` };
         try {
-            const response = await axios.get(
-                `http://localhost:8000/api/favorites/${favBookInfo.bookId}/`,
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
-            if (response.status === 200) {
-                setFavoriteObj(response.data);
-            }
+            const response = await axios({ method, url, data, headers });
+            return response.data;
         } catch (error) {
             console.error(error);
         }
     };
-    const addFav = async (token) => {
-        try {
-            const response = await axios.post(
-                `http://localhost:8000/api/favorites/${favBookInfo.bookId}/`,
-                {
-                    title: favBookInfo.title,
-                    thumbnail_url: favBookInfo.thumbnailUrl,
-                },
-                { headers: { Authorization: "Bearer " + token } }
-            );
-            if (response.status === 201) {
-                setFavState(!favState);
-                setFavoriteObj(response.data);
-            }
-        } catch (error) {
-            console.error(error);
+    const fetchFavorite = async () => {
+        const response = await apiRequest(
+            "get",
+            `favorites/${favBookInfo.bookId}/`
+        );
+        if (response) {
+            setFavoriteObj(response);
         }
     };
-    const deleteFav = async (token) => {
-        try {
-            const response = await axios.delete(
-                `http://localhost:8000/api/favorites/${favoriteObj.id}/`,
-                { headers: { Authorization: "Bearer " + token } }
+    const toggleFav = async () => {
+        if (!isAuthenticated) return;
+
+        if (favState) {
+            const success = await apiRequest(
+                "delete",
+                `favorites/${favoriteObj.id}/`
             );
-            if (response.status === 204) {
-                setFavState(!favState);
+            if (success) {
+                setFavState(false);
                 setFavoriteObj(null);
             }
-        } catch (error) {
-            console.error(error);
+        } else {
+            const data = {
+                title: favBookInfo.title,
+                thumbnail_url: favBookInfo.thumbnailUrl,
+            };
+            const response = await apiRequest(
+                "post",
+                `favorites/${favBookInfo.bookId}/`,
+                data
+            );
+            if (response) {
+                setFavState(true);
+                setFavoriteObj(response);
+            }
         }
     };
     return (
