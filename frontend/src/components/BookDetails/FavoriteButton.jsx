@@ -51,19 +51,18 @@ const FavoriteButton = ({ favBookInfo }) => {
         }
     };
     const deleteFav = async (token) => {
-        console.log("testing");
-        // try {
-        //     const response = await axios.delete(
-        //         `http://localhost:8000/api/favorites/primaryKey/`,
-        //         { headers: { Authorization: "Bearer " + token } }
-        //     );
-        //     if (response.status === 204) {
-        //         setFavState(!favState);
-        //         setFavoriteObj(null)
-        //     }
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        try {
+            const response = await axios.delete(
+                `http://localhost:8000/api/favorites/${favoriteObj.id}/`,
+                { headers: { Authorization: "Bearer " + token } }
+            );
+            if (response.status === 204) {
+                setFavState(!favState);
+                setFavoriteObj(null);
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
     return (
         <div>
