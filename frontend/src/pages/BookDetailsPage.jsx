@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import BookInfo from "../components/BookDetails/BookInfo";
+import FavoriteButton from "../components/BookDetails/FavoriteButton";
 
 export async function getBookDetailsLoader({ params }) {
     return getBooksDetailsSearch(params.bookId);
@@ -29,6 +30,11 @@ async function getBooksDetailsSearch(bookId) {
 export default function BookDetailsPage() {
     const data = useLoaderData() || [];
     const [bookDetails, setBookDetails] = useState(data);
-    // console.log(bookDetails);
-    return <BookInfo bookInfo={bookDetails.bookInfo} />;
+    console.log(bookDetails);
+    return (
+        <div>
+            <BookInfo bookInfo={bookDetails.bookInfo} />
+            <FavoriteButton isFav={bookDetails.appData.is_favorite} />
+        </div>
+    );
 }
