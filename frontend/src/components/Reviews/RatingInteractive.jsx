@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const RatingInteractive = ({ onRatingSelected }) => {
+const RatingInteractive = ({ onRatingSelected, resetKey }) => {
     const [selectedRating, setSelectedRating] = useState(0);
 
     const displayStarRating = () => {

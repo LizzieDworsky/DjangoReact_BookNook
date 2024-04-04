@@ -6,6 +6,7 @@ const NewReviewsForm = ({}) => {
         text: "",
         rating: 0,
     });
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -14,7 +15,28 @@ const NewReviewsForm = ({}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        console.log(!validateForm());
         console.log(review);
+    };
+
+    const validateForm = () => {
+        let formIsValid = true;
+        let errors = {};
+
+        // Text validation
+        if (!review.text.trim()) {
+            errors.reviewText = "Please enter information about your review.";
+            formIsValid = false;
+        }
+        // Rating validation
+        if (review.rating < 6 || review.rating > 0) {
+            errors.reviewRating = "Please enter a rating between 1 and 5.";
+            formIsValid = false;
+        }
+
+        setErrors(errors);
+        return formIsValid;
     };
 
     return (
