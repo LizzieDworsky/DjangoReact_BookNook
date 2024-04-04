@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import BookInfo from "../components/BookDetails/BookInfo";
 import FavoriteButton from "../components/BookDetails/FavoriteButton";
+import Reviews from "../components/Reviews/ReviewsSection";
 
 export async function getBookDetailsLoader({ params }) {
     return getBooksDetailsSearch(params.bookId);
@@ -42,6 +43,7 @@ export default function BookDetailsPage() {
         <div>
             <BookInfo bookInfo={bookDetails.bookInfo} />
             <FavoriteButton favBookInfo={favBookInfo} />
+            <Reviews appData={bookDetails.appData} />
         </div>
     );
 }
