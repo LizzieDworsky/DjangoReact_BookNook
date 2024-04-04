@@ -5,7 +5,7 @@ const Reviews = ({ appData }) => {
     console.log(appData);
     return (
         <div>
-            <div>ReviewsSection</div> <NewReviewsForm />{" "}
+            <div>ReviewsSection</div> <NewReviewsForm />
             <ReviewsList reviewsList={appData.reviews} />
         </div>
     );
