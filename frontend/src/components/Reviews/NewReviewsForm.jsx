@@ -15,8 +15,8 @@ const NewReviewsForm = ({}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateForm()) return;
 
-        console.log(!validateForm());
         console.log(review);
         setReview({
             text: "",
@@ -36,7 +36,7 @@ const NewReviewsForm = ({}) => {
             formIsValid = false;
         }
         // Rating validation
-        if (review.rating < 6 || review.rating > 0) {
+        if (review.rating < 1 || review.rating > 5) {
             errors.reviewRating = "Please enter a rating between 1 and 5.";
             formIsValid = false;
         }
@@ -55,6 +55,11 @@ const NewReviewsForm = ({}) => {
                         setReview({ ...review, ["rating"]: rating })
                     }
                 />
+                {errors.reviewRating && (
+                    <div className="form-error-message">
+                        {errors.reviewRating}
+                    </div>
+                )}
                 <label htmlFor="review-text">Tell us about it.</label>
                 <input
                     type="text"
@@ -63,6 +68,11 @@ const NewReviewsForm = ({}) => {
                     value={review.text}
                     onChange={(e) => handleChange(e)}
                 />
+                {errors.reviewText && (
+                    <div className="form-error-message">
+                        {errors.reviewText}
+                    </div>
+                )}
                 <button>Submit</button>
             </form>
         </div>
