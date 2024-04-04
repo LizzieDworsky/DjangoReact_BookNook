@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const RatingInteractive = ({ onRatingSelected, resetKey }) => {
-    const [selectedRating, setSelectedRating] = useState(0);
+const RatingInteractive = ({ onRatingSelected, rating }) => {
+    const [selectedRating, setSelectedRating] = useState(rating);
+
+    useEffect(() => {
+        setSelectedRating(rating);
+    }, [rating]);
 
     const displayStarRating = () => {
         return [1, 2, 3, 4, 5].map((index) => (

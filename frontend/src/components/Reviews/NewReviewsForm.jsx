@@ -18,6 +18,12 @@ const NewReviewsForm = ({}) => {
 
         console.log(!validateForm());
         console.log(review);
+        setReview({
+            text: "",
+            rating: 0,
+        });
+        // Only after successful request
+        // setErrors({});
     };
 
     const validateForm = () => {
@@ -44,6 +50,7 @@ const NewReviewsForm = ({}) => {
             <h2>What do you think?</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <RatingInteractive
+                    rating={review.rating}
                     onRatingSelected={(rating) =>
                         setReview({ ...review, ["rating"]: rating })
                     }
