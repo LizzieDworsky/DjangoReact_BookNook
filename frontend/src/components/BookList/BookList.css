@@ -41,7 +41,7 @@
 
 .book-list-item h4 {
     margin: 10px 0;
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
     color: #333;
 }
@@ -49,7 +49,8 @@
 .book-list-item p {
     margin: 5px 0;
     color: #666;
-    font-size: 14px;
+    font-size: inherit;
+    font-weight: inherit;
     text-align: center;
 }
 

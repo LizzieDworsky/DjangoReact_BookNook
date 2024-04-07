@@ -61,7 +61,7 @@ const FavoriteButton = ({ favBookInfo }) => {
         }
     };
     return (
-        <div>
+        <div className="favorite-button">
             <FaHeart
                 className={favState ? "isFavHeart" : "isNotFavHeart"}
                 onClick={() => toggleFav()}

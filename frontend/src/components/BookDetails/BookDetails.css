@@ -1,0 +1,144 @@
+/* BookInfo CSS */
+.book-info-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Book Image and Details */
+.book-info-image,
+.book-info-details {
+    flex: 1;
+    max-width: 50%;
+}
+
+.book-info-image {
+    padding-right: 20px;
+}
+
+.book-info-image img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin-left: 35%;
+}
+
+.book-info-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-info-details p,
+ul li,
+h3,
+h2 {
+    padding-left: 32%;
+}
+
+/* Book Description and Genre */
+.book-info-description {
+    margin: 20px 0 20px 0;
+    width: 100%;
+}
+
+/* Genre styles */
+.book-info-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: start;
+    width: 100%;
+}
+
+.book-info-genres-heading {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0 4% 0 0;
+}
+
+.book-info-genre-item {
+    background-color: #ddd;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+
+.book-info-genres {
+    align-items: center;
+}
+
+/* FavoriteButton CSS */
+.favorite-button {
+    padding: 25px;
+    text-align: center;
+}
+
+.isFavHeart,
+.isNotFavHeart {
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.isFavHeart {
+    color: #e74c3c;
+}
+
+.isNotFavHeart {
+    color: #bdc3c7;
+}
+
+.isFavHeart:hover,
+.isNotFavHeart:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+
+@media (max-width: 680px) {
+    .book-info-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 25px 0 0 0;
+    }
+
+    .book-info-image,
+    .book-info-details {
+        width: 50%;
+        max-width: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    .book-info-image img {
+        width: 80%;
+        height: auto;
+        margin-bottom: 20px;
+        margin: 0;
+    }
+
+    .book-info-details p,
+    ul li,
+    h3,
+    h2 {
+        padding-left: 0;
+    }
+
+    .favorite-button {
+        padding: 15px;
+    }
+
+    .book-info-description {
+        width: 90%;
+        margin-top: 20px;
+    }
+
+    .book-info-genres {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
