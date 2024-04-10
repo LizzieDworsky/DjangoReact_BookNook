@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import BookInfo from "../components/BookDetails/BookInfo";
-import Reviews from "../components/Reviews/ReviewsSection";
+import ReviewsSection from "../components/Reviews/ReviewsSection";
 
 export async function getBookDetailsLoader({ params }) {
     return getBooksDetailsSearch(params.bookId);
@@ -45,22 +45,29 @@ async function getAppData(bookId) {
 
 export default function BookDetailsPage() {
     const data = useLoaderData() || [];
-    const [bookDetails, setBookDetails] = useState(data);
+    const [bookInfo, setBookInfo] = useState(data.bookInfo);
+    const [appData, setAppData] = useState(data.appData);
     const favBookInfo = {
-        bookId: bookDetails.appData.book_id,
-        isFav: bookDetails.appData.is_favorite,
-        title: bookDetails.bookInfo.title,
-        thumbnailUrl: bookDetails.bookInfo.imageLinks?.thumbnail,
+        bookId: appData.book_id,
+        isFav: appData.is_favorite,
+        title: bookInfo.title,
+        thumbnailUrl: bookInfo.imageLinks?.thumbnail,
     };
+
+    const updateAppData = async (bookId) => {
+        const response = await getAppData(bookId);
+        console.log(response);
+        if (response.status === 200) {
+            setAppData(response.data);
+        }
+    };
+
     console.log(favBookInfo);
-    console.log(bookDetails);
+    console.log(appData);
     return (
         <div>
-            <BookInfo
-                bookInfo={bookDetails.bookInfo}
-                favBookInfo={favBookInfo}
-            />
-            <Reviews appData={bookDetails.appData} />
+            <BookInfo bookInfo={bookInfo} favBookInfo={favBookInfo} />
+            <ReviewsSection appData={appData} updateAppData={updateAppData} />
         </div>
     );
 }

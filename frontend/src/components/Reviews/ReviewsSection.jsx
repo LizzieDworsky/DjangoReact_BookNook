@@ -2,11 +2,14 @@ import NewReviewsForm from "./NewReviewsForm";
 import ReviewsList from "./ReviewsList";
 import { useAuth } from "../../utils/useAuth";
 
-const Reviews = ({ appData }) => {
+const ReviewsSection = ({ appData, updateAppData }) => {
     const { isAuthenticated } = useAuth();
 
     const reviewFormSection = isAuthenticated ? (
-        <NewReviewsForm book_id={appData.book_id} />
+        <NewReviewsForm
+            book_id={appData.book_id}
+            updateAppData={updateAppData}
+        />
     ) : (
         <div>Log in to leave a review.</div>
     );
@@ -26,4 +29,4 @@ const Reviews = ({ appData }) => {
     );
 };
 
-export default Reviews;
+export default ReviewsSection;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import RatingInteractive from "./RatingInteractive";
 import { useAuth } from "../../utils/useAuth";
 
-const NewReviewsForm = ({ book_id }) => {
+const NewReviewsForm = ({ book_id, updateAppData }) => {
     const [review, setReview] = useState({
         text: "",
         rating: 0,
@@ -34,6 +34,7 @@ const NewReviewsForm = ({ book_id }) => {
                     rating: 0,
                 });
                 setErrors({});
+                updateAppData(book_id);
             }
         } catch (error) {
             console.error(error);
