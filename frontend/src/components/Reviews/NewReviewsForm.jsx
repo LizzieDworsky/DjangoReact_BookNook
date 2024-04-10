@@ -1,12 +1,15 @@
+import axios from "axios";
 import { useState } from "react";
 import RatingInteractive from "./RatingInteractive";
+import { useAuth } from "../../utils/useAuth";
 
-const NewReviewsForm = ({}) => {
+const NewReviewsForm = ({ book_id }) => {
     const [review, setReview] = useState({
         text: "",
         rating: 0,
     });
     const [errors, setErrors] = useState({});
+    const { token } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -16,14 +19,25 @@ const NewReviewsForm = ({}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-
-        console.log(review);
-        setReview({
-            text: "",
-            rating: 0,
-        });
-        // Only after successful request
-        // setErrors({});
+        try {
+            const response = await axios.post(
+                `http://localhost:8000/api/reviews/user/${book_id}/`,
+                review,
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+            if (response.status === 201) {
+                console.log(review);
+                setReview({
+                    text: "",
+                    rating: 0,
+                });
+                setErrors({});
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const validateForm = () => {
