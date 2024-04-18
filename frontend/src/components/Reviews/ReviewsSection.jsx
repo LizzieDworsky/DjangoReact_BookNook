@@ -15,7 +15,10 @@ const ReviewsSection = ({ appData, updateAppData }) => {
     );
     const reviewListSection =
         appData.reviews.length > 0 ? (
-            <ReviewsList reviewsList={appData.reviews} />
+            <ReviewsList
+                reviewsList={appData.reviews}
+                updateAppData={updateAppData}
+            />
         ) : (
             <div>Be the first to leave a review.</div>
         );
