@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Layout/NavBar";
 
 // Define the main layout component for the application
 function App() {
