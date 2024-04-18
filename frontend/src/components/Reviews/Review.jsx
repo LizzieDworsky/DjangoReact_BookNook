@@ -13,6 +13,10 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
         rating: review.rating,
     });
     const { token } = useAuth();
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUpdateReview({ ...updateReview, [name]: value });
+    };
     const handleDelete = async () => {
         try {
             const response = await axios.delete(
@@ -31,16 +35,17 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
     };
     const handleEdit = async () => {
         try {
-            console.log(review);
-            // const response = await axios.put(
-            //     `http://localhost:8000/api/reviews/${review.id}/`, updateReview
-            //     {
-            //         headers: { Authorization: `Bearer ${token}` },
-            //     }
-            // );
-            // if (response.status === 200) {
-            //     updateAppData(review.book_id);
-            // }
+            const response = await axios.put(
+                `http://localhost:8000/api/reviews/${review.id}/`,
+                updateReview,
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+            if (response.status === 200) {
+                updateAppData(review.book_id);
+                setShowEditModal(false);
+            }
         } catch (error) {
             console.log(error);
         }
@@ -61,6 +66,26 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             className: "",
         },
     ];
+    const editModalChildren = (
+        <>
+            <RatingInteractive
+                rating={updateReview.rating}
+                onRatingSelected={(rating) =>
+                    setUpdateReview({
+                        ...updateReview,
+                        ["rating"]: rating,
+                    })
+                }
+            />
+            <input
+                type="text"
+                id="update-review-text"
+                name="text"
+                value={updateReview.text}
+                onChange={(e) => handleChange(e)}
+            />
+        </>
+    );
     return (
         <div>
             <p className="review-username">{review.user.username}</p>
@@ -88,15 +113,7 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
                         close={() => setShowEditModal(false)}
                         actions={modalEditActions}
                     >
-                        <RatingInteractive
-                            rating={updateReview.rating}
-                            onRatingSelected={(rating) =>
-                                setUpdateReview({
-                                    ...updateReview,
-                                    ["rating"]: rating,
-                                })
-                            }
-                        />
+                        {editModalChildren}
                     </Modal>
                 </div>
             )}
