@@ -2,8 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import RatingDisplay from "./RatingDisplay";
 import { useAuth } from "../../utils/useAuth";
+import Modal from "../Layout/Modal";
 
 const Review = ({ review, isCurrentUser, updateAppData }) => {
+    const [showModal, setShowModal] = useState(false);
     const [updateReview, setUpdateReview] = useState({
         text: "",
         rating: 0,
@@ -48,9 +50,12 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             <p className="review-text">{review.text}</p>
             {isCurrentUser && (
                 <div>
-                    <button onClick={(e) => handleDelete(e, review)}>
-                        Delete
-                    </button>
+                    <button onClick={(e) => setShowModal(true)}>Delete</button>
+                    <Modal
+                        isOpen={showModal}
+                        title="Confirm Deletion"
+                        close={() => setShowModal(false)}
+                    ></Modal>
                     <button onClick={(e) => handleEdit(e, review)}>Edit</button>
                 </div>
             )}
