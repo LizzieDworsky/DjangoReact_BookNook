@@ -12,7 +12,7 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
     });
     const { token } = useAuth();
     console.log(review);
-    const handleDelete = async (e, review) => {
+    const handleDelete = async () => {
         try {
             const response = await axios.delete(
                 `http://localhost:8000/api/reviews/${review.id}/`,
@@ -22,6 +22,7 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             );
             if (response.status === 204) {
                 updateAppData(review.book_id);
+                setShowModal(false);
             }
         } catch (error) {
             console.log(error);
@@ -43,6 +44,14 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             console.log(error);
         }
     };
+    const modalActions = [
+        { label: "Yes, delete it.", onClick: handleDelete, className: "" },
+        {
+            label: "No, go back.",
+            onClick: () => setShowModal(false),
+            className: "",
+        },
+    ];
     return (
         <div>
             <p className="review-username">{review.user.username}</p>
@@ -55,7 +64,10 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
                         isOpen={showModal}
                         title="Confirm Deletion"
                         close={() => setShowModal(false)}
-                    ></Modal>
+                        actions={modalActions}
+                    >
+                        <p>Are you sure you want to delete this review?</p>
+                    </Modal>
                     <button onClick={(e) => handleEdit(e, review)}>Edit</button>
                 </div>
             )}
