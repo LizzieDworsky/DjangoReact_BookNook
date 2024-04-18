@@ -1,8 +1,13 @@
 import axios from "axios";
+import { useState } from "react";
 import RatingDisplay from "./RatingDisplay";
 import { useAuth } from "../../utils/useAuth";
 
 const Review = ({ review, isCurrentUser, updateAppData }) => {
+    const [updateReview, setUpdateReview] = useState({
+        text: "",
+        rating: 0,
+    });
     const { token } = useAuth();
     console.log(review);
     const handleDelete = async (e, review) => {
@@ -20,13 +25,34 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             console.log(error);
         }
     };
+    const handleEdit = async (e, review) => {
+        try {
+            console.log(review);
+            // const response = await axios.put(
+            //     `http://localhost:8000/api/reviews/${review.id}/`, updateReview
+            //     {
+            //         headers: { Authorization: `Bearer ${token}` },
+            //     }
+            // );
+            // if (response.status === 200) {
+            //     updateAppData(review.book_id);
+            // }
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <div>
             <p className="review-username">{review.user.username}</p>
             <RatingDisplay ratingValue={review.rating} />
             <p className="review-text">{review.text}</p>
             {isCurrentUser && (
-                <button onClick={(e) => handleDelete(e, review)}>Delete</button>
+                <div>
+                    <button onClick={(e) => handleDelete(e, review)}>
+                        Delete
+                    </button>
+                    <button onClick={(e) => handleEdit(e, review)}>Edit</button>
+                </div>
             )}
         </div>
     );
