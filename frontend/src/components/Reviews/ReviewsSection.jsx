@@ -19,7 +19,6 @@ const ReviewsSection = ({ appData, updateAppData }) => {
         ) : (
             <div>Be the first to leave a review.</div>
         );
-    console.log(appData);
 
     return (
         <div>
