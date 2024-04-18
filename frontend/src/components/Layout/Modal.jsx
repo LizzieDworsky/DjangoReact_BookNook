@@ -2,7 +2,7 @@ import "./Modal.css";
 
 const Modal = ({ isOpen, close, title, children, actions }) => {
     if (!isOpen) return null;
-    console.log(actions);
+
     return (
         <div className="modal-backdrop">
             <div className="modal-content">

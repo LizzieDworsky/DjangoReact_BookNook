@@ -1,17 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
 import RatingDisplay from "./RatingDisplay";
+import RatingInteractive from "./RatingInteractive";
 import { useAuth } from "../../utils/useAuth";
 import Modal from "../Layout/Modal";
 
 const Review = ({ review, isCurrentUser, updateAppData }) => {
-    const [showModal, setShowModal] = useState(false);
+    const [showDltModal, setShowDltModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
     const [updateReview, setUpdateReview] = useState({
-        text: "",
-        rating: 0,
+        text: review.text,
+        rating: review.rating,
     });
     const { token } = useAuth();
-    console.log(review);
     const handleDelete = async () => {
         try {
             const response = await axios.delete(
@@ -22,13 +23,13 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             );
             if (response.status === 204) {
                 updateAppData(review.book_id);
-                setShowModal(false);
+                setShowDltModal(false);
             }
         } catch (error) {
             console.log(error);
         }
     };
-    const handleEdit = async (e, review) => {
+    const handleEdit = async () => {
         try {
             console.log(review);
             // const response = await axios.put(
@@ -44,11 +45,19 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             console.log(error);
         }
     };
-    const modalActions = [
+    const modalDltActions = [
         { label: "Yes, delete it.", onClick: handleDelete, className: "" },
         {
             label: "No, go back.",
-            onClick: () => setShowModal(false),
+            onClick: () => setShowDltModal(false),
+            className: "",
+        },
+    ];
+    const modalEditActions = [
+        { label: "Save Changes", onClick: handleEdit, className: "" },
+        {
+            label: "Cancel",
+            onClick: () => setShowEditModal(false),
             className: "",
         },
     ];
@@ -59,16 +68,36 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
             <p className="review-text">{review.text}</p>
             {isCurrentUser && (
                 <div>
-                    <button onClick={(e) => setShowModal(true)}>Delete</button>
+                    <button onClick={(e) => setShowDltModal(true)}>
+                        Delete
+                    </button>
                     <Modal
-                        isOpen={showModal}
+                        isOpen={showDltModal}
                         title="Confirm Deletion"
-                        close={() => setShowModal(false)}
-                        actions={modalActions}
+                        close={() => setShowDltModal(false)}
+                        actions={modalDltActions}
                     >
                         <p>Are you sure you want to delete this review?</p>
                     </Modal>
-                    <button onClick={(e) => handleEdit(e, review)}>Edit</button>
+                    <button onClick={(e) => setShowEditModal(true)}>
+                        Edit
+                    </button>
+                    <Modal
+                        isOpen={showEditModal}
+                        title="Edit Review"
+                        close={() => setShowEditModal(false)}
+                        actions={modalEditActions}
+                    >
+                        <RatingInteractive
+                            rating={updateReview.rating}
+                            onRatingSelected={(rating) =>
+                                setUpdateReview({
+                                    ...updateReview,
+                                    ["rating"]: rating,
+                                })
+                            }
+                        />
+                    </Modal>
                 </div>
             )}
         </div>
