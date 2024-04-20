@@ -1,6 +1,7 @@
 import NewReviewsForm from "./NewReviewsForm";
 import ReviewsList from "./ReviewsList";
 import { useAuth } from "../../utils/useAuth";
+import "./ReviewsSection.css";
 
 const ReviewsSection = ({ appData, updateAppData }) => {
     const { isAuthenticated } = useAuth();
@@ -24,7 +25,7 @@ const ReviewsSection = ({ appData, updateAppData }) => {
         );
 
     return (
-        <div>
+        <div className="reviews-section">
             {reviewFormSection}
             {reviewListSection}
         </div>

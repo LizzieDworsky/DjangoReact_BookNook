@@ -4,6 +4,7 @@ import RatingDisplay from "./RatingDisplay";
 import RatingInteractive from "./RatingInteractive";
 import { useAuth } from "../../utils/useAuth";
 import Modal from "../Layout/Modal";
+import { FaTrash, FaPencilAlt } from "react-icons/fa";
 
 const Review = ({ review, isCurrentUser, updateAppData }) => {
     const [showDltModal, setShowDltModal] = useState(false);
@@ -87,36 +88,56 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
         </>
     );
     return (
-        <div>
-            <p className="review-username">{review.user.username}</p>
-            <RatingDisplay ratingValue={review.rating} />
-            <p className="review-text">{review.text}</p>
-            {isCurrentUser && (
-                <div>
-                    <button onClick={(e) => setShowDltModal(true)}>
-                        Delete
-                    </button>
-                    <Modal
-                        isOpen={showDltModal}
-                        title="Confirm Deletion"
-                        close={() => setShowDltModal(false)}
-                        actions={modalDltActions}
-                    >
-                        <p>Are you sure you want to delete this review?</p>
-                    </Modal>
-                    <button onClick={(e) => setShowEditModal(true)}>
-                        Edit
-                    </button>
-                    <Modal
-                        isOpen={showEditModal}
-                        title="Edit Review"
-                        close={() => setShowEditModal(false)}
-                        actions={modalEditActions}
-                    >
-                        {editModalChildren}
-                    </Modal>
+        <div className="review-card">
+            <div className="review-user">{review.user.username}</div>
+            <div className="review-content">
+                <div className="star-rating">
+                    <RatingDisplay ratingValue={review.rating} />
                 </div>
-            )}
+                <div className="review-text">{review.text}</div>
+                <div className="review-actions">
+                    {isCurrentUser && (
+                        <div>
+                            <FaTrash
+                                className="delete-icon"
+                                onClick={(e) => setShowDltModal(true)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) =>
+                                    e.key === "Enter" && setShowDltModal(true)
+                                }
+                            />
+                            <Modal
+                                isOpen={showDltModal}
+                                title="Confirm Deletion"
+                                close={() => setShowDltModal(false)}
+                                actions={modalDltActions}
+                            >
+                                <p>
+                                    Are you sure you want to delete this review?
+                                </p>
+                            </Modal>
+                            <FaPencilAlt
+                                className="edit-icon"
+                                onClick={(e) => setShowEditModal(true)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) =>
+                                    e.key === "Enter" && setShowEditModal(true)
+                                }
+                            />
+                            <Modal
+                                isOpen={showEditModal}
+                                title="Edit Review"
+                                close={() => setShowEditModal(false)}
+                                actions={modalEditActions}
+                            >
+                                {editModalChildren}
+                            </Modal>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };

@@ -1,0 +1,52 @@
+.reviews-section {
+    max-width: 800px; /* Example width, adjust as needed */
+    margin: auto; /* Center it on the page */
+    padding: 20px;
+}
+
+.review-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.review-user {
+    flex: 0 0 100px;
+    margin: 15px 20px 0px 10px;
+}
+
+.review-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.review-actions {
+    align-self: flex-end;
+    margin-top: 10px;
+}
+.star-rating {
+    color: #ffc107;
+}
+
+.star-empty {
+    color: #dcdcdc;
+}
+
+.edit-icon,
+.delete-icon {
+    color: #333;
+    font-size: 1.25em;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+    color: #666;
+}

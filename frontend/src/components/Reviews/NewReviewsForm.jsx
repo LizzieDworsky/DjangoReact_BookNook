@@ -61,8 +61,8 @@ const NewReviewsForm = ({ book_id, updateAppData }) => {
     };
 
     return (
-        <div>
-            <h2>What do you think?</h2>
+        <div className="new-review-form">
+            <h2>Reviews & Ratings</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <RatingInteractive
                     rating={review.rating}
