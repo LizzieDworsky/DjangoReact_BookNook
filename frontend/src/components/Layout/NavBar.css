@@ -19,7 +19,7 @@
     text-decoration: none;
     color: inherit;
 }
-:hover {
+.navbar-brand:hover {
     cursor: pointer;
 }
 
