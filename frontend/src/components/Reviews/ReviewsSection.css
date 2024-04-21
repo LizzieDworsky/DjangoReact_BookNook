@@ -16,6 +16,24 @@
     transition: color 0.2s;
 }
 
+.RatingInteractive .star-filled {
+    color: #ffc107; /* gold color */
+}
+
+.RatingInteractive .star-empty {
+    color: #e4e5e9; /* grey color */
+}
+
+.RatingInteractive .star-filled:hover,
+.RatingInteractive .star-empty:hover {
+    color: #f1c40f; /* slightly different gold color for hover */
+}
+.RatingInteractive .star-filled,
+.RatingInteractive .star-empty {
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
 .new-review-textarea {
     width: 97.5%;
     padding: 10px;
@@ -92,4 +110,18 @@
 .edit-icon:hover,
 .delete-icon:hover {
     color: #666;
+}
+
+@media (max-width: 732px) {
+    .reviews-section,
+    .new-review-form {
+        max-width: 100%;
+        padding: 10px;
+    }
+    .review,
+    .edit-icon,
+    .delete-icon {
+        width: 100%;
+        /* Make sure the icons and review text are aligned properly */
+    }
 }
