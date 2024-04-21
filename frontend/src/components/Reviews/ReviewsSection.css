@@ -34,13 +34,14 @@
     transition: all 300ms ease-in-out;
 }
 
-.new-review-textarea {
+.review-textarea {
     width: 97.5%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-top: 10px;
     margin-bottom: 10px;
+    font-weight: inherit;
     font-family: inherit;
     resize: vertical;
     background-color: #fafafa;
@@ -118,6 +119,10 @@
 
 .cancel-button:hover {
     background: #7e8c8d;
+}
+
+.edit-modal-section {
+    margin: 15px;
 }
 
 @media (max-width: 732px) {

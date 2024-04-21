@@ -65,7 +65,6 @@ const NewReviewsForm = ({ book_id, updateAppData }) => {
             <h2>Reviews & Ratings</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <RatingInteractive
-                    className="RatingInteractive" // This is where you pass the class
                     rating={review.rating}
                     onRatingSelected={(rating) =>
                         setReview({ ...review, rating: rating })
@@ -80,7 +79,7 @@ const NewReviewsForm = ({ book_id, updateAppData }) => {
                     Tell us what you think about the book:
                 </label>
                 <textarea
-                    className="new-review-textarea" // New class name for the textarea
+                    className="review-textarea"
                     id="review-text"
                     name="text"
                     value={review.text}
@@ -93,10 +92,7 @@ const NewReviewsForm = ({ book_id, updateAppData }) => {
                         {errors.reviewText}
                     </div>
                 )}
-                <button
-                    className="new-review-submit-button" // New class name for the submit button
-                    type="submit"
-                >
+                <button className="new-review-submit-button" type="submit">
                     Submit
                 </button>
             </form>

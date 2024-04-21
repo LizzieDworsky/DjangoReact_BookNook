@@ -76,7 +76,7 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
         },
     ];
     const editModalChildren = (
-        <>
+        <div className="edit-modal-section">
             <RatingInteractive
                 rating={updateReview.rating}
                 onRatingSelected={(rating) =>
@@ -86,14 +86,16 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
                     })
                 }
             />
-            <input
+            <textarea
+                className="review-textarea"
                 type="text"
                 id="update-review-text"
                 name="text"
                 value={updateReview.text}
+                rows="4"
                 onChange={(e) => handleChange(e)}
-            />
-        </>
+            ></textarea>
+        </div>
     );
     return (
         <div className="review-card">
