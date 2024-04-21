@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const RatingInteractive = ({ onRatingSelected, rating, className }) => {
+const RatingInteractive = ({ onRatingSelected, rating }) => {
     const [selectedRating, setSelectedRating] = useState(rating);
     const [hoverRating, setHoverRating] = useState(0);
 
@@ -36,7 +36,7 @@ const RatingInteractive = ({ onRatingSelected, rating, className }) => {
         ));
     };
 
-    return <div className={className}>{displayStarRating()}</div>;
+    return <div className="RatingInteractive">{displayStarRating()}</div>;
 };
 
 export default RatingInteractive;

@@ -1,3 +1,4 @@
+import { MdClose } from "react-icons/md";
 import "./Modal.css";
 
 const Modal = ({ isOpen, close, title, children, actions }) => {
@@ -6,7 +7,16 @@ const Modal = ({ isOpen, close, title, children, actions }) => {
     return (
         <div className="modal-backdrop">
             <div className="modal-content">
-                <h2>{title}</h2>
+                <div className="modal-header">
+                    <h2 className="modal-title">{title}</h2>
+                    <MdClose
+                        onClick={close}
+                        className="modal-close-btn"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === "Enter"}
+                    />
+                </div>
                 {children}
                 <div className="modal-actions">
                     {actions.map((action, index) => (
@@ -19,9 +29,6 @@ const Modal = ({ isOpen, close, title, children, actions }) => {
                         </button>
                     ))}
                 </div>
-                <button onClick={close} className="modal-close-btn">
-                    Close
-                </button>
             </div>
         </div>
     );

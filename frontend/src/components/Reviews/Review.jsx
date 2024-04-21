@@ -52,19 +52,27 @@ const Review = ({ review, isCurrentUser, updateAppData }) => {
         }
     };
     const modalDltActions = [
-        { label: "Yes, delete it.", onClick: handleDelete, className: "" },
+        {
+            label: "Yes, delete it.",
+            onClick: handleDelete,
+            className: "confirm-button",
+        },
         {
             label: "No, go back.",
             onClick: () => setShowDltModal(false),
-            className: "",
+            className: "cancel-button",
         },
     ];
     const modalEditActions = [
-        { label: "Save Changes", onClick: handleEdit, className: "" },
+        {
+            label: "Save Changes",
+            onClick: handleEdit,
+            className: "confirm-button",
+        },
         {
             label: "Cancel",
             onClick: () => setShowEditModal(false),
-            className: "",
+            className: "cancel-button",
         },
     ];
     const editModalChildren = (
