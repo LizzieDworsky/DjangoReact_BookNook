@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
     const navigate = useNavigate();
     const { isAuthenticated } = useAuth();
+    // Implement a check to ensure username is unique
     const [credentials, setCredentials] = useState({
         first_name: "",
         last_name: "",
@@ -41,7 +42,7 @@ const RegisterForm = () => {
             formIsValid = false;
         }
 
-        // Add additional errors, for example password expectations (Password must be at least 8 characters, etc)
+        // Add additional errors, for example password expectations (Password must be at least 8 characters, etc) and email format
 
         setErrors(errors);
         return formIsValid;
