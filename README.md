@@ -43,3 +43,45 @@ The project is divided into two main directories:
 ### Backend File Structure
 
 ### Frontend File Structure
+
+## Future Work
+
+<!-- -   **Security Enhancements**: Implement HttpOnly cookies for secure JWT storage, CSRF protection, and rate limiting for the API endpoints. -->
+
+-   **Refresh Token Implementation**: Regularly refresh JWT access tokens using refresh tokens to improve security without compromising user experience.
+-   **Performance Optimization**: Introduce caching strategies for frequently accessed data, especially for book details and average ratings.
+-   **Frontend Improvements**: Improve error messaging in the frontend for a better user experience. Consider implementing optimistic UI updates for favoriting and reviewing books.
+-   **User Experience**: Add a 'show password' toggle for password fields and implement front-end validation for user inputs.
+-   **Feature Expansion**: Limit the number of reviews a user can leave for a book to one, and display their review at the top.
+-   **Search Enhancement**: Include advanced search filters and sorting options in the book search feature.
+-   **Review System**: Implement a system to feature 'helpful' reviews based on user votes and display them prominently.
+-   **Review Enhancements**: Incorporate dates on reviews and implement sorting functionality, allowing users to view reviews by the most recent or most helpful.
+-   **Book Collections**: Allow users to organize their favorited books into personalized book collections, improving the management and display of their favorite reads on the user favorites page.
+-   **User Profiles**: Create dedicated user profile pages where users can edit personal details and pin their favorite collections for others to see.
+-   **Profile Pictures**: Introduce the ability for users to upload profile pictures, which will be displayed alongside their reviews to add a personal touch.
+-   **Social Features**: Allow users to follow other readers, see their favorites, and reviews, creating a social network atmosphere.
+-   **Accessibility**: Ensure all components are fully accessible, including modal dialogs and interactive ratings components.
+-   **Design System**: Develop a design system for consistent UI components across the application.
+-   **Mobile Responsiveness**: Enhance the responsiveness of the application for an improved mobile user experience.
+-   **Testing**: Add test coverage for both backend and frontend components to improve reliability.
+-   **Documentation**: Create comprehensive API documentation and developer guides.
+
+These enhancements and features aim to improve the robustness, functionality, and user engagement of the BookNook application.
+
+## Challenges and Lessons Learned
+
+## Contributing
+
+Contributions are welcome! If you're interested in improving BookNook, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a pull request.
+
+<!-- Please make sure to update tests as appropriate. -->
+
+---
+
+For any additional questions or comments, feel free to reach out.
