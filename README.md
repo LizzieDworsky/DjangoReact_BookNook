@@ -42,7 +42,36 @@ The project is divided into two main directories:
 
 ### Backend File Structure
 
+```
+backend/
+│   book_details/
+│   favorites/
+│   reviews/
+│   users/
+│   .gitignore
+│   manage.py
+│   Pipfile
+│   Pipfile.lock
+```
+
 ### Frontend File Structure
+
+```
+frontend/
+│   node_modules/
+│   public/
+│   src/
+│   │   components/
+│   │   pages/
+│   │   utils/
+│   │   App.css
+│   │   App.js
+│   │   index.js
+│   .gitignore
+│   package-lock.json
+│   package.json
+│   README.md
+```
 
 ## Future Work
 
