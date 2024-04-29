@@ -4,10 +4,21 @@ import { useLoaderData } from "react-router-dom";
 import BookInfo from "../components/BookDetails/BookInfo";
 import ReviewsSection from "../components/Reviews/ReviewsSection";
 
+/**
+ * Loader function to fetch detailed information about a book using its ID.
+ * @param {Object} params - Route parameters including 'bookId'.
+ * @returns {Object} Object containing book information and application data.
+ */
 export async function getBookDetailsLoader({ params }) {
     return getBooksDetailsSearch(params.bookId);
 }
 
+/**
+ * Fetches detailed information about the book from both the Google Books API
+ * and the application's backend.
+ * @param {string} bookId - The ID of the book.
+ * @returns {Object} Object containing detailed information about the book.
+ */
 async function getBooksDetailsSearch(bookId) {
     try {
         const response1 = await getBookInfo(bookId);
@@ -19,6 +30,12 @@ async function getBooksDetailsSearch(bookId) {
     }
 }
 
+/**
+ * Fetches book details from Google Books API.
+ * Directly returns the book information, or logs an error if the fetch fails.
+ * @param {string} bookId - The ID of the book to fetch.
+ * @returns {Object} Book information from Google Books API or `undefined` on error.
+ */
 async function getBookInfo(bookId) {
     try {
         const response = await axios.get(
@@ -29,6 +46,13 @@ async function getBookInfo(bookId) {
         console.log(error);
     }
 }
+
+/**
+ * Fetches additional app data about the book from the backend.
+ * Returns the application data about the book, or logs an error if the fetch fails.
+ * @param {string} bookId - The ID of the book.
+ * @returns {Object} Application data about the book from the backend or `undefined` on error.
+ */
 async function getAppData(bookId) {
     try {
         const token = localStorage.getItem("token");
@@ -43,6 +67,10 @@ async function getAppData(bookId) {
     }
 }
 
+/**
+ * Component to display detailed book information and reviews.
+ * Uses loader data as initial state and updates if new data is fetched.
+ */
 export default function BookDetailsPage() {
     const data = useLoaderData() || [];
     const [bookInfo, setBookInfo] = useState(data.bookInfo);
