@@ -45,9 +45,26 @@ The project is divided into two main directories:
 ```
 backend/
 │   book_details/
+│   │   urls.py
+│   │   views.py
+│   booknook/
+│   │   local_settings.py
+│   │   settings.py
+│   │   urls.py
 │   favorites/
+│   │   models.py
+│   │   serializer.py
+│   │   urls.py
+│   │   views.py
 │   reviews/
+│   │   models.py
+│   │   serializer.py
+│   │   urls.py
+│   │   views.py
 │   users/
+│   │   serializer.py
+│   │   urls.py
+│   │   views.py
 │   .gitignore
 │   manage.py
 │   Pipfile
@@ -62,8 +79,21 @@ frontend/
 │   public/
 │   src/
 │   │   components/
+│   │   │   auth/
+│   │   │   BookDetails/
+│   │   │   BookList/
+│   │   │   Layout/
+│   │   │   Reviews/
+│   │   │   SearchBar/
 │   │   pages/
+│   │   │   BookDetailsPage.jsx
+│   │   │   FavoritesPage.jsx
+│   │   │   HomePage.jsx
+│   │   │   LoginPage.jsx
+│   │   │   RegisterPage.jsx
 │   │   utils/
+│   │   │   PrivateRoute.jsx
+│   │   │   useAuth.js
 │   │   App.css
 │   │   App.js
 │   │   index.js
